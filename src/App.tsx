@@ -12,9 +12,22 @@ function App() {
     const [maxCount, setMaxCount] = useState<number>(5)
     const [isError, setError] = useState<boolean>(false)
     const [errorAlert, setAlert] = useState<AlertTypes>("enter values and press 'set' ")
-    useLayoutEffect(() => {
-        setMaxCount(5)
-    }, [])
+ const s =() => {
+        let maxCountLS = localStorage.getItem('maxCount')
+        if (maxCountLS) {
+            let newValue = JSON.parse(maxCountLS)
+            setMaxCount(newValue)
+        }
+     debugger
+        let minCountLS = localStorage.getItem('minCount')
+        if (minCountLS) {
+            let minValue = JSON.parse(minCountLS)
+            setMinCount(minValue)
+            setCounter(minValue)
+        }
+
+
+    }
 
     useEffect(() => {
         console.log("c " + counter)
@@ -30,6 +43,8 @@ function App() {
         setCounter(minCount)
     }
     const setValue = (minCount: number, maxCount: number) => {
+        localStorage.setItem('minCount', JSON.stringify(minCount))
+        localStorage.setItem('maxCount', JSON.stringify(maxCount))
         setMinCount(minCount)
         setCounter(minCount)
         setMaxCount(maxCount)
@@ -43,6 +58,7 @@ function App() {
     }
     return (
         <div className="App">
+            <button onClick={s}>k</button>
             <Counter
                 isError={isError}
                 counter={counter}
