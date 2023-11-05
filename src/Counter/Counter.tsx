@@ -1,4 +1,5 @@
 import React from 'react';
+import {AlertTypes} from "../App";
 
 
 interface CounterProps {
@@ -7,7 +8,7 @@ interface CounterProps {
     incrementCount: () => void
     resetCount: () => void
     isError: boolean
-    alert: "enter values and press 'set' "| "Incorrect values"
+    alert: AlertTypes
 }
 
 
