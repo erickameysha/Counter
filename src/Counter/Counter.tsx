@@ -6,18 +6,22 @@ interface CounterProps {
     maxCount: number
     incrementCount: () => void
     resetCount: () => void
+    isError: boolean
+    alert: "enter values and press 'set' "| "Incorrect values"
 }
 
 
-const Counter = ({counter, maxCount, incrementCount, resetCount}: CounterProps) => {
+const Counter = ({counter, maxCount, incrementCount, resetCount, alert, isError}: CounterProps) => {
 
 
     return (
         <div>
             <div className="">
-                <div className="">{counter}</div>
+                {
+                    isError ? alert : <div className="">{counter}</div>
+                }
                 <button disabled={counter >= maxCount} onClick={incrementCount}>+</button>
-                <button disabled={counter< maxCount} onClick={resetCount}>-</button>
+                <button disabled={counter < maxCount} onClick={resetCount}>-</button>
             </div>
         </div>
     );

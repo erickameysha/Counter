@@ -4,11 +4,13 @@ import './App.css';
 import Counter from "./Counter/Counter";
 import SettingCounter from "./SettingCounter/SettingCounter";
 
+type AlertTypes =  "enter values and press 'set' "| "Incorrect values"
 function App() {
     let [minCount, setMinCount] = useState<number>(0)
     let [counter, setCounter] = useState<number>(minCount)
     const [maxCount, setMaxCount] = useState<number>(5)
-
+    const [isError, setError] = useState<boolean>(false)
+    const [errorAlert, setAlert]= useState<AlertTypes>("enter values and press 'set' ")
 
 
     useLayoutEffect(() => {
@@ -30,29 +32,33 @@ function App() {
         setCounter(minCount)
     }
     const setValue = (minCount: number, maxCount: number) => {
-        console.log('r')
-            setMinCount(minCount)
+
+        setMinCount(minCount)
         setCounter(minCount)
-            setMaxCount(maxCount)
+        setMaxCount(maxCount)
 
     }
-    const validationAlert = () => {
-      
+    const validationAlert = (isError: boolean) => {
+        setError(isError)
     }
 
     return (
         <div className="App">
             <Counter
+                isError={isError}
                 counter={counter}
                 maxCount={maxCount}
                 incrementCount={incrementCount}
                 resetCount={resetCount}
+                alert={errorAlert}
 
             />
             <SettingCounter
                 maxCount={maxCount}
                 counter={counter}
                 setValue={setValue}
+                isError={isError}
+                validationAlert={validationAlert}
             />
 
         </div>
