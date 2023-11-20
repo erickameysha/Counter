@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Counter from "./Counter/Counter";
 import SettingCounter from "./SettingCounter/SettingCounter";
+import ButtonComponent from "./components/ButtonComponent";
 
 export type AlertTypes = "enter values and press 'set' " | "Incorrect values"
 
@@ -58,7 +59,7 @@ function App() {
     }
     return (
         <div className="App">
-            <button onClick={s}>k</button>
+            {/*<ButtonComponent/>*/}
             <Counter
                 isError={isError}
                 counter={counter}

@@ -1,5 +1,6 @@
 import React from 'react';
 import {AlertTypes} from "../App";
+import ButtonComponent from "../components/ButtonComponent";
 
 
 interface CounterProps {
@@ -21,8 +22,10 @@ const Counter = ({counter, maxCount, incrementCount, resetCount, alert, isError}
                 {
                     isError ? alert : <div className="">{counter}</div>
                 }
-                <button disabled={counter >= maxCount} onClick={incrementCount}>+</button>
-                <button disabled={counter < maxCount} onClick={resetCount}>-</button>
+                {/*<button disabled={counter >= maxCount} onClick={incrementCount}>+</button>*/}
+                <ButtonComponent title={'incr'} onClick={incrementCount} disabled={counter >= maxCount}/>
+                <ButtonComponent title={'reset'} onClick={resetCount} disabled={counter < maxCount}/>
+                {/*<button disabled={counter < maxCount} onClick={resetCount}>-</button>*/}
             </div>
         </div>
     );
