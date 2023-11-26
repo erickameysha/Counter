@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useEffect, useLayoutEffect, useState} from 'react';
 import style from './Setting.module.css'
 import {AlertTypes} from "../App";
+import InputComponent from "../components/InputComponent";
 
 interface SettingCountProps {
     maxCount: number,
@@ -18,7 +19,7 @@ const SettingCounter = ({maxCount, counter, setValue, validationAlert, alerttHan
 
     useEffect(() => {
         if (minCountBable < 0 || maxCountBable === minCountBable || maxCountBable < minCountBable) {
-            console.log('error')
+            
             alerttHandler("Incorrect values")
             validationAlert(true)
         }
@@ -41,6 +42,7 @@ const SettingCounter = ({maxCount, counter, setValue, validationAlert, alerttHan
     }
     return (
         <div className="">
+            <InputComponent/>
             maxCount:
             <input className={maxCountBable === minCountBable ? style.error : ''} value={maxCountBable}
                    onChange={setMaxCountHandler} type="number"/>
